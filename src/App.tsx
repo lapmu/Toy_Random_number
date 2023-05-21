@@ -1,10 +1,7 @@
-import { useState } from 'react';
 import './App.css';
 import styled from 'styled-components';
 
 function App() {
-  const [minNumber, setMinNumber] = useState(0);
-  const [maxNumber, setMaxNumber] = useState(0);
   return (
     <>
       <Body>
