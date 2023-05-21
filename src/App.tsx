@@ -10,26 +10,26 @@ function App() {
       <Body>
         <InputWapper>
           <NumberRange>
-            <div>
+            <InputWapperBox>
               <label>
                 {`첫 숫자 : `}
                 <input />
               </label>
-            </div>
+            </InputWapperBox>
             ~
-            <div>
+            <InputWapperBox>
               <label>
                 {`마지막 숫자 : `}
                 <input />
               </label>
-            </div>
+            </InputWapperBox>
           </NumberRange>
-          <div>
+          <InputWapperBox>
             <label>
               {`뽑을 갯수 : `} <input />
             </label>
-          </div>
-          <button>뽑기</button>
+          </InputWapperBox>
+          <SelectButton>뽑기</SelectButton>
         </InputWapper>
         <ResultWapper>결과창</ResultWapper>
       </Body>
@@ -51,6 +51,7 @@ const Body = styled.div`
 `;
 
 const InputWapper = styled(Body)`
+  justify-content: space-between;
   width: 80%;
   height: 20%;
   margin-bottom: 10px;
@@ -63,7 +64,25 @@ const ResultWapper = styled(InputWapper)`
 
 const NumberRange = styled.div`
   width: 65%;
+  height: 30%;
   display: flex;
   justify-content: space-between;
   align-content: center;
+`;
+
+const InputWapperBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  input {
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+    background-color: #eeeeee;
+  }
+`;
+
+const SelectButton = styled.button`
+  border: 1px solid gray;
 `;
