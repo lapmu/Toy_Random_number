@@ -1,7 +1,73 @@
+import { ChangeEvent, useState } from 'react';
 import './App.css';
 import styled from 'styled-components';
 
 function App() {
+  const [minNumber, setMinNumber] = useState(0);
+  const [maxNumber, setMaxNumber] = useState(0);
+  const [number, setNumber] = useState<number[]>([]);
+  const [selectNumber, setSelectNumber] = useState(0);
+  const [results, setResults] = useState<number[][]>([]);
+
+  const handleChangeMinNumber = (e: ChangeEvent<HTMLInputElement>) => {
+    setMinNumber(() => Number(e.target.value));
+  };
+
+  const handleChangeMaxNumber = (e: ChangeEvent<HTMLInputElement>) => {
+    setMaxNumber(() => Number(e.target.value));
+  };
+
+  const handleChangeSelectNumber = (e: ChangeEvent<HTMLInputElement>) => {
+    setSelectNumber(() => Number(e.target.value));
+  };
+
+  const handleClickButton = () => {
+    if (number.length === 0) {
+      const numberList: number[] = [];
+
+      for (let i = minNumber; i <= maxNumber; i++) {
+        numberList.push(i);
+      }
+
+      const select: number[] = [];
+
+      for (let i = 0; i < selectNumber; i++) {
+        select.push(
+          numberList.splice(
+            Math.floor(Math.random() * numberList?.length),
+            1
+          )[0]
+        );
+      }
+
+      setResults((prev) => [...prev, select]);
+      console.log(numberList);
+      setNumber(() => numberList);
+    } else {
+      const copy = [...number];
+      console.log(copy);
+
+      const select: number[] = [];
+
+      for (let i = 0; i < selectNumber; i++) {
+        if (copy.length === 0) {
+          break;
+        }
+        select.push(
+          copy.splice(Math.floor(Math.random() * copy?.length), 1)[0]
+        );
+      }
+      console.log(copy);
+      setResults((prev) => [...prev, select]);
+
+      setNumber(() => copy);
+
+      if (copy.length === 0) {
+        alert('뽑기가 끝났습니다.');
+      }
+    }
+  };
+
   return (
     <>
       <Body>
@@ -10,25 +76,29 @@ function App() {
             <InputWapperBox>
               <label>
                 {`첫 숫자 : `}
-                <input />
+                <input onChange={handleChangeMinNumber} />
               </label>
             </InputWapperBox>
             ~
             <InputWapperBox>
               <label>
                 {`마지막 숫자 : `}
-                <input />
+                <input onChange={handleChangeMaxNumber} />
               </label>
             </InputWapperBox>
           </NumberRange>
           <InputWapperBox>
             <label>
-              {`뽑을 갯수 : `} <input />
+              {`뽑을 갯수 : `} <input onChange={handleChangeSelectNumber} />
             </label>
           </InputWapperBox>
-          <SelectButton>뽑기</SelectButton>
+          <SelectButton onClick={handleClickButton}>뽑기</SelectButton>
         </InputWapper>
-        <ResultWapper>결과창</ResultWapper>
+        <ResultWapper>
+          {results.map((result, idx) => (
+            <div>{`${idx + 1}회 : ${result.join(', ')}`}</div>
+          ))}
+        </ResultWapper>
       </Body>
     </>
   );
@@ -55,6 +125,7 @@ const InputWapper = styled(Body)`
 `;
 
 const ResultWapper = styled(InputWapper)`
+  justify-content: flex-start;
   height: 40%;
   margin: 0;
 `;
