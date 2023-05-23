@@ -41,11 +41,9 @@ function App() {
       }
 
       setResults((prev) => [...prev, select]);
-      console.log(numberList);
       setNumber(() => numberList);
     } else {
       const copy = [...number];
-      console.log(copy);
 
       const select: number[] = [];
 
@@ -57,7 +55,6 @@ function App() {
           copy.splice(Math.floor(Math.random() * copy?.length), 1)[0]
         );
       }
-      console.log(copy);
       setResults((prev) => [...prev, select]);
 
       setNumber(() => copy);
