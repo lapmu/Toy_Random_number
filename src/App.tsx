@@ -22,45 +22,49 @@ function App() {
   };
 
   const handleClickButton = () => {
-    if (number.length === 0) {
-      const numberList: number[] = [];
-
-      for (let i = minNumber; i <= maxNumber; i++) {
-        numberList.push(i);
-      }
-
-      const select: number[] = [];
-
-      for (let i = 0; i < selectNumber; i++) {
-        select.push(
-          numberList.splice(
-            Math.floor(Math.random() * numberList?.length),
-            1
-          )[0]
-        );
-      }
-
-      setResults((prev) => [...prev, select]);
-      setNumber(() => numberList);
+    if (isNaN(minNumber) || isNaN(maxNumber) || isNaN(selectNumber)) {
+      alert('숫자를 입력해주세요');
     } else {
-      const copy = [...number];
+      if (number.length === 0) {
+        const numberList: number[] = [];
 
-      const select: number[] = [];
-
-      for (let i = 0; i < selectNumber; i++) {
-        if (copy.length === 0) {
-          break;
+        for (let i = minNumber; i <= maxNumber; i++) {
+          numberList.push(i);
         }
-        select.push(
-          copy.splice(Math.floor(Math.random() * copy?.length), 1)[0]
-        );
-      }
-      setResults((prev) => [...prev, select]);
 
-      setNumber(() => copy);
+        const select: number[] = [];
 
-      if (copy.length === 0) {
-        alert('뽑기가 끝났습니다.');
+        for (let i = 0; i < selectNumber; i++) {
+          select.push(
+            numberList.splice(
+              Math.floor(Math.random() * numberList?.length),
+              1
+            )[0]
+          );
+        }
+
+        setResults((prev) => [...prev, select]);
+        setNumber(() => numberList);
+      } else {
+        const copy = [...number];
+
+        const select: number[] = [];
+
+        for (let i = 0; i < selectNumber; i++) {
+          if (copy.length === 0) {
+            break;
+          }
+          select.push(
+            copy.splice(Math.floor(Math.random() * copy?.length), 1)[0]
+          );
+        }
+        setResults((prev) => [...prev, select]);
+
+        setNumber(() => copy);
+
+        if (copy.length === 0) {
+          alert('뽑기가 끝났습니다.');
+        }
       }
     }
   };
