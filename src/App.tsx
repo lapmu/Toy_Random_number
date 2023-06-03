@@ -24,6 +24,9 @@ function App() {
   const handleClickButton = () => {
     if (isNaN(minNumber) || isNaN(maxNumber) || isNaN(selectNumber)) {
       alert('숫자를 입력해주세요');
+      setMinNumber(0);
+      setMaxNumber(0);
+      setSelectNumber(0);
     } else {
       if (number.length === 0) {
         const numberList: number[] = [];
@@ -77,20 +80,21 @@ function App() {
             <InputWapperBox>
               <label>
                 {`첫 숫자 : `}
-                <input onChange={handleChangeMinNumber} />
+                <input onChange={handleChangeMinNumber} value={minNumber} />
               </label>
             </InputWapperBox>
             ~
             <InputWapperBox>
               <label>
                 {`마지막 숫자 : `}
-                <input onChange={handleChangeMaxNumber} />
+                <input onChange={handleChangeMaxNumber} value={maxNumber} />
               </label>
             </InputWapperBox>
           </NumberRange>
           <InputWapperBox>
             <label>
-              {`뽑을 갯수 : `} <input onChange={handleChangeSelectNumber} />
+              {`뽑을 갯수 : `}{' '}
+              <input onChange={handleChangeSelectNumber} value={selectNumber} />
             </label>
           </InputWapperBox>
           <SelectButton onClick={handleClickButton}>뽑기</SelectButton>
