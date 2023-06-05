@@ -152,7 +152,6 @@ const NumberRange = styled.div`
   display: flex;
   justify-content: space-between;
   align-content: center;
-  border: 1px solid black;
 `;
 
 const InputWapperBox = styled.div`
