@@ -72,6 +72,16 @@ function App() {
     }
   };
 
+  const handleClickResetButton = () => {
+    if (confirm('정말로 초기화를 하시겠습니까?')) {
+      setMinNumber(0);
+      setMaxNumber(0);
+      setSelectNumber(0);
+      setResults([]);
+      setNumber([]);
+    }
+  };
+
   return (
     <>
       <Body>
@@ -98,7 +108,7 @@ function App() {
             </label>
           </InputWapperBox>
           <SelectButton onClick={handleClickSelectButton}>뽑기</SelectButton>
-          <SelectButton>초기화</SelectButton>
+          <SelectButton onClick={handleClickResetButton}>초기화</SelectButton>
         </InputWapper>
         <ResultWapper>
           {results.map((result, idx) => (
