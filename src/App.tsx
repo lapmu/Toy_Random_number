@@ -21,7 +21,7 @@ function App() {
     setSelectNumber(() => Number(e.target.value));
   };
 
-  const handleClickButton = () => {
+  const handleClickSelectButton = () => {
     if (isNaN(minNumber) || isNaN(maxNumber) || isNaN(selectNumber)) {
       alert('숫자를 입력해주세요');
       setMinNumber(0);
@@ -83,7 +83,7 @@ function App() {
                 <input onChange={handleChangeMinNumber} value={minNumber} />
               </label>
             </InputWapperBox>
-            ~
+            <InputWapperBox>~</InputWapperBox>
             <InputWapperBox>
               <label>
                 {`마지막 숫자 : `}
@@ -97,7 +97,8 @@ function App() {
               <input onChange={handleChangeSelectNumber} value={selectNumber} />
             </label>
           </InputWapperBox>
-          <SelectButton onClick={handleClickButton}>뽑기</SelectButton>
+          <SelectButton onClick={handleClickSelectButton}>뽑기</SelectButton>
+          <SelectButton>초기화</SelectButton>
         </InputWapper>
         <ResultWapper>
           {results.map((result, idx) => (
@@ -125,7 +126,7 @@ const Body = styled.div`
 const InputWapper = styled(Body)`
   justify-content: space-between;
   width: 80%;
-  height: 20%;
+  height: 40%;
   margin-bottom: 10px;
 `;
 
@@ -141,6 +142,7 @@ const NumberRange = styled.div`
   display: flex;
   justify-content: space-between;
   align-content: center;
+  border: 1px solid black;
 `;
 
 const InputWapperBox = styled.div`
