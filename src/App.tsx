@@ -103,7 +103,7 @@ function App() {
           </NumberRange>
           <InputWapperBox>
             <label>
-              {`뽑을 갯수 : `}{' '}
+              {`뽑을 갯수 : `}
               <input onChange={handleChangeSelectNumber} value={selectNumber} />
             </label>
           </InputWapperBox>
@@ -141,6 +141,7 @@ const InputWapper = styled(Body)`
 `;
 
 const ResultWapper = styled(InputWapper)`
+  overflow: auto;
   justify-content: flex-start;
   height: 40%;
   margin: 0;
@@ -159,8 +160,13 @@ const InputWapperBox = styled.div`
   justify-content: center;
   align-items: center;
 
+  label {
+    font-size: 1vw;
+  }
+
   input {
-    height: 30px;
+    font-size: 1vw;
+    padding: 3%;
     border: none;
     border-radius: 5px;
     background-color: #eeeeee;
@@ -168,5 +174,7 @@ const InputWapperBox = styled.div`
 `;
 
 const SelectButton = styled.button`
+  font-size: 1vw;
+  padding: 0.5% 3%;
   border: 1px solid gray;
 `;
